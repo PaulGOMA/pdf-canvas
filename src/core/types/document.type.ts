@@ -9,18 +9,6 @@
  * @description This module provides TypeScript interfaces for document metadata and structure.
  */
 
-/**
- * IDocument Interface
- * Represents a document with metadata and structure.
- * @interface IDocument
- * @property {IMetadata} metadata - The metadata of the document.
- * @property {IStructure} structure - The structure of the document.
- */
-export type IDocument = {
-  metadata: IMetadata
-  structure: IStructure
-}
-
 /** IMetadata Interface
  * Represents the metadata of a document.
  * @interface IMetadata
@@ -34,7 +22,7 @@ export type IMetadata = {
   title: string
   author?: string | null
   description?: string | null
-  keywords?: string[] | null
+  keywords?: Set<string> | null
   creationDate?: Date | null
 }
 
