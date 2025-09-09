@@ -56,4 +56,64 @@ describe('Document method types', () => {
       .parameter(0)
       .toEqualTypeOf<string[]>()
   })
+
+  it('getStructure method', () => {
+    // getStructure is a function
+    expectTypeOf<{ (): IStructure }>(doc.getStructure).toBeFunction()
+    // getStructure returns IStructure
+    expectTypeOf<{ (): IStructure }>(doc.getStructure).returns.toEqualTypeOf<IStructure>()
+  })
+
+  it('setFormat method', () => {
+    // setFormat is a function
+    expectTypeOf<{ (format: 'A4' | 'A3' | 'Letter' | 'Legal'): void }>(doc.setFormat).toBeFunction()
+    // setFormat returns void
+    expectTypeOf<{ (format: 'A4' | 'A3' | 'Letter' | 'Legal'): void }>(
+      doc.setFormat,
+    ).returns.toBeVoid()
+    // setFormat accepts a specific string argument
+    expectTypeOf<{ (format: 'A4' | 'A3' | 'Letter' | 'Legal'): void }>(doc.setFormat)
+      .parameter(0)
+      .toEqualTypeOf<'A4' | 'A3' | 'Letter' | 'Legal'>()
+  })
+
+  it('setOrientation method', () => {
+    // setOrientation is a function
+    expectTypeOf<{ (orientation: 'portrait' | 'landscape' | 'square'): void }>(
+      doc.setOrientation,
+    ).toBeFunction()
+    // setOrientation returns void
+    expectTypeOf<{ (orientation: 'portrait' | 'landscape' | 'square'): void }>(
+      doc.setOrientation,
+    ).returns.toBeVoid()
+    // setOrientation accepts a specific string argument
+    expectTypeOf<{ (orientation: 'portrait' | 'landscape' | 'square'): void }>(doc.setOrientation)
+      .parameter(0)
+      .toEqualTypeOf<'portrait' | 'landscape' | 'square'>()
+  })
+
+  it('getNumberOfPages method', () => {
+    // getNumberOfPages is a function
+    expectTypeOf<{ (): number }>(doc.getNumberOfPages).toBeFunction()
+    // getNumberOfPages returns number
+    expectTypeOf<{ (): number }>(doc.getNumberOfPages).returns.toBeNumber()
+  })
+
+  it('addPage method', () => {
+    // addPage is a function
+    expectTypeOf<{ (number: number): void }>(doc.addPage).toBeFunction()
+    // addPage returns void
+    expectTypeOf<{ (number: number): void }>(doc.addPage).returns.toBeVoid()
+    // addPage accepts a number argument
+    expectTypeOf<{ (number: number): void }>(doc.addPage).parameter(0).toEqualTypeOf<number>()
+  })
+
+  it('deletePage method', () => {
+    // deletePage is a function
+    expectTypeOf<{ (pageIndex: number): void }>(doc.deletePage).toBeFunction()
+    // deletePage returns void
+    expectTypeOf<{ (pageIndex: number): void }>(doc.deletePage).returns.toBeVoid()
+    // deletePage accepts a number argument
+    expectTypeOf<{ (pageIndex: number): void }>(doc.deletePage).parameter(0).toEqualTypeOf<number>()
+  })
 })
